@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 # parse arguments
 while getopts "h:c:u:m:" option; do
   case $option in
@@ -23,16 +21,10 @@ while getopts "h:c:u:m:" option; do
     esac
 done
 
-
-
 # prepare message
 MESSAGE_TO_SEND=$(echo -e "${MESSAGE}" | sed 's/\"/\\"/g' | sed "s/'/\'/g" | sed 's/`/\`/g')
 TEXT="\"text\": \"${MESSAGE_TO_SEND}\""
-
-
-
 PAYLOAD="{\"channel\": \"${CHANNEL}\", \"username\":\"${USERNAME}\", ${TEXT}}"
-
 echo $PAYLOAD
 # send message
 curl -s -d "payload=$PAYLOAD" $HOOK
