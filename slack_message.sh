@@ -25,6 +25,6 @@ done
 MESSAGE_TO_SEND=$(echo -e "${MESSAGE}" | sed 's/\"/\\"/g' | sed "s/'/\'/g" | sed 's/`/\`/g')
 TEXT="\"text\": \"${MESSAGE_TO_SEND}\""
 PAYLOAD="{\"channel\": \"${CHANNEL}\", \"username\":\"${USERNAME}\", ${TEXT}}"
-echo $PAYLOAD
+echo ${PAYLOAD}
 # send message
-curl -s -d "payload=$PAYLOAD" $HOOK
+curl -s -d "payload=${PAYLOAD}" ${HOOK}
